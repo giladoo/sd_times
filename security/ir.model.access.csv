@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sd_times_records_admins,sd_times.records,model_sd_times_records,sd_times.group_admins,1,1,1,1
+access_sd_times_records_users,sd_times.records,model_sd_times_records,sd_times.group_users,1,1,1,1
+access_sd_times_job_type_admins,sd_times.job_type,model_sd_times_job_type,sd_times.group_admins,1,1,1,1
+access_sd_times_job_type_users,sd_times.job_type,model_sd_times_job_type,sd_times.group_users,1,0,0,0
+access_sd_times_location_admins,sd_times.location,model_sd_times_location,sd_times.group_admins,1,1,1,1
+access_sd_times_location_users,sd_times.location,model_sd_times_location,sd_times.group_users,1,0,0,0

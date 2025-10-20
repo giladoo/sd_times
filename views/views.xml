@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="records_list" model="ir.ui.view">
+        <field name="name">Project List</field>
+        <field name="model">sd_times.records</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <header>
+<!--                    <button string="UUID" name="update_uuid" type="object" class="btn bg-danger-light" groups="base.group_system"></button>-->
+                </header>
+                <field name="name" string="Subject"/>
+                <field name="employee_id" readonly="1" />
+                <field name="department_id" readonly="1" />
+                <field name="project" />
+                <field name="job_type" />
+                <field name="location" />
+                <field name="start_time" />
+                <field name="end_time" />
+                <field name="duration" />
+
+            </list>
+        </field>
+    </record>
+
+    <record id="records_form" model="ir.ui.view">
+        <field name="name">Project List</field>
+        <field name="model">sd_times.records</field>
+        <field name="arch" type="xml">
+            <form >
+                <group>
+                    <group>
+                        <field name="name" string="Subject"/>
+                        <field name="employee_id" readonly="1" />
+                        <field name="department_id" readonly="1" />
+
+                        <field name="project" />
+                        <field name="job_type" />
+                        <field name="location" />
+                        <field name="start_time" />
+                        <field name="end_time" />
+                        <field name="duration" />
+
+                    </group>
+                </group>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="records_calendare" model="ir.ui.view">
+        <field name="name">Records List</field>
+        <field name="model">sd_times.records</field>
+        <field name="arch" type="xml">
+            <calendar mode="month" date_start="start_time" date_stop="end_time"
+                      event_open_popup="true" quick_create="0"
+                      color="project" form_view_id="sd_times.records_form">
+
+                <field name="name" string="Subject"/>
+                <field name="employee_id" readonly="1" />
+
+                <field name="project" />
+                <field name="job_type" />
+                <field name="location" />
+                <field name="start_time" />
+                <field name="end_time" />
+                <field name="duration" />
+
+            </calendar>
+        </field>
+    </record>
+
+    <record id="records_pivot" model="ir.ui.view">
+        <field name="name">Project List</field>
+        <field name="model">sd_times.records</field>
+        <field name="arch" type="xml">
+            <pivot >
+                <field name="name" string="Subject"/>
+                <field name="department_id"  type="col" />
+                <field name="employee_id"  type="col" />
+                <field name="project"  type="row"/>
+                <field name="job_type" />
+                <field name="location" />
+                <field name="start_time" />
+                <field name="end_time" />
+                <field name="duration"  type="measure"/>
+
+<!--                <field name="availability" type="measure"/>-->
+            </pivot>
+        </field>
+    </record>
+
+
+
+    <record id="records_search" model="ir.ui.view">
+        <field name="name">Records List</field>
+        <field name="model">sd_times.records</field>
+        <field name="arch" type="xml">
+            <search >
+                <field name="project" />
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="job_type" />
+                <field name="location" />
+                <field name="start_time" />
+                <field name="end_time" />
+                <filter string="limited" name="limited" domain="[('create_uid', '=', uid)]"/>
+                <filter string="Date" name="group_date" context="{'group_by': 'start_time'}"/>
+                <filter string="Project" name="group_project" context="{'group_by': 'project'}"/>
+
+
+            </search>
+        </field>
+    </record>
+
+    <record id="job_types_list" model="ir.ui.view">
+        <field name="name">Job Types List</field>
+        <field name="model">sd_times.job_type</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="location_list" model="ir.ui.view">
+        <field name="name">Location List</field>
+        <field name="model">sd_times.location</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="records_window_action" model="ir.actions.act_window">
+        <field name="name">Project Times</field>
+        <field name="res_model">sd_times.records</field>
+        <field name="context">{'search_default_group_project': 1, 'search_default_group_date': 2, }</field>
+        <field name="domain">[('create_uid', '=', uid)]</field>
+        <field name="view_mode">calendar,list,form,pivot</field>
+    </record>
+
+    <record id="all_records_window_action" model="ir.actions.act_window">
+        <field name="name">Project Times</field>
+        <field name="res_model">sd_times.records</field>
+        <field name="context">{'search_default_group_project': 1, 'search_default_group_date': 2, }</field>
+<!--        <field name="domain">[('create_uid', '=', uid)]</field>-->
+        <field name="view_mode">calendar,list,form,pivot</field>
+    </record>
+
+    <record id="job_types_window_action" model="ir.actions.act_window">
+        <field name="name">Job Types</field>
+        <field name="res_model">sd_times.job_type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record id="location_window_action" model="ir.actions.act_window">
+        <field name="name">Location</field>
+        <field name="res_model">sd_times.location</field>
+        <field name="view_mode">list</field>
+    </record>
+    
+    <menuitem
+            id="sd_times_nemu"
+            name="Project Times"
+            action="records_window_action"
+    />
+    <menuitem
+            id="configuration_nemu"
+            name="Configuration"
+            parent="sd_times_nemu"
+            groups="sd_times.group_admins"
+    />
+    <menuitem
+            id="managers_nemu"
+            name="Managers"
+            parent="sd_times_nemu"
+            groups="sd_times.group_admins"
+    />
+    <menuitem
+            id="records_nemu"
+            name="All Records"
+            parent="managers_nemu"
+            action="all_records_window_action"
+            />
+    <menuitem
+            id="job_types_nemu"
+            name="Job Types"
+            parent="configuration_nemu"
+            action="job_types_window_action"
+    />
+    <menuitem
+            id="location_nemu"
+            name="Location"
+            parent="configuration_nemu"
+            action="location_window_action"
+    />
+</odoo>
