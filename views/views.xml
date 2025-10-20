@@ -167,18 +167,7 @@
             name="Project Times"
             action="records_window_action"
     />
-    <menuitem
-            id="configuration_nemu"
-            name="Configuration"
-            parent="sd_times_nemu"
-            groups="sd_times.group_admins"
-    />
-    <menuitem
-            id="managers_nemu"
-            name="Managers"
-            parent="sd_times_nemu"
-            groups="sd_times.group_admins"
-    />
+
     <menuitem
             id="records_nemu"
             name="All Records"
@@ -190,6 +179,19 @@
             name="Job Types"
             parent="configuration_nemu"
             action="job_types_window_action"
+    />
+    <menuitem
+            id="configuration_nemu"
+            name="Configuration"
+            parent="sd_times_nemu"
+            sequence="900"
+            groups="sd_times.group_admins"
+    />
+    <menuitem
+            id="managers_nemu"
+            name="Managers"
+            parent="sd_times_nemu"
+            groups="sd_times.group_admins"
     />
     <menuitem
             id="location_nemu"
