@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="records_list" model="ir.ui.view">
-        <field name="name">Project List</field>
+        <field name="name">Timesheet List</field>
         <field name="model">sd_times.records</field>
         <field name="arch" type="xml">
             <list editable="bottom">
@@ -23,7 +23,7 @@
     </record>
 
     <record id="records_form" model="ir.ui.view">
-        <field name="name">Project List</field>
+        <field name="name">Timesheet Form</field>
         <field name="model">sd_times.records</field>
         <field name="arch" type="xml">
             <form >
@@ -48,7 +48,7 @@
     </record>
 
     <record id="records_calendare" model="ir.ui.view">
-        <field name="name">Records List</field>
+        <field name="name">Timesheet Calendar</field>
         <field name="model">sd_times.records</field>
         <field name="arch" type="xml">
             <calendar mode="month" date_start="start_time" date_stop="end_time"
@@ -70,7 +70,7 @@
     </record>
 
     <record id="records_pivot" model="ir.ui.view">
-        <field name="name">Project List</field>
+        <field name="name">Timesheet Pivot</field>
         <field name="model">sd_times.records</field>
         <field name="arch" type="xml">
             <pivot >
@@ -92,7 +92,7 @@
 
 
     <record id="records_search" model="ir.ui.view">
-        <field name="name">Records List</field>
+        <field name="name">Timesheet Search</field>
         <field name="model">sd_times.records</field>
         <field name="arch" type="xml">
             <search >
@@ -135,7 +135,7 @@
 
 
     <record id="records_window_action" model="ir.actions.act_window">
-        <field name="name">Project Times</field>
+        <field name="name">Timesheet</field>
         <field name="res_model">sd_times.records</field>
         <field name="context">{'search_default_group_project': 1, 'search_default_group_date': 2, }</field>
         <field name="domain">[('create_uid', '=', uid)]</field>
@@ -143,7 +143,7 @@
     </record>
 
     <record id="all_records_window_action" model="ir.actions.act_window">
-        <field name="name">Project Times</field>
+        <field name="name">Timesheet Managers</field>
         <field name="res_model">sd_times.records</field>
         <field name="context">{'search_default_group_project': 1, 'search_default_group_date': 2, }</field>
 <!--        <field name="domain">[('create_uid', '=', uid)]</field>-->
@@ -164,7 +164,7 @@
     
     <menuitem
             id="sd_times_nemu"
-            name="Project Times"
+            name="Timesheet"
             action="records_window_action"
     />
 
