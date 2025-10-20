@@ -19,10 +19,12 @@ class SdTimesRecords(models.Model):
     job_type = fields.Many2one('sd_times.job_type')
     location = fields.Many2one('sd_times.location')
 
+    @api.depends('start_time', 'end_time' )
     def compute_duration(self):
         for rec in self:
             delta = rec.end_time - rec.start_time
             rec.duration = delta.total_seconds() / 3600
+            # print(f">>>>>>>>>>>>>>>>>>>\n [{rec.name}] : [{rec.duration}]")
             # total_seconds = int(delta.total_seconds())
             # hours = total_seconds // 3600
             # minutes = (total_seconds % 3600) // 60
